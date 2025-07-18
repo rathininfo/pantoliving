@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { FaBagShopping, FaBars } from "react-icons/fa6";
-import { Link, NavLink } from "react-router-dom";
+import { IoMdClose } from "react-icons/io";
+import { NavLink } from "react-router-dom";
 
 const navItems = [
     {path: "/furniture", label:"Furniture"},
@@ -8,11 +10,11 @@ const navItems = [
            {path: "/contact", label:"Contact"}
 ]
 
-const NavItems = ()=>{
+const NavItems = (toggleButton)=>{
 return(
     <ul className="flex flex-col md:flex-row md:space-x-8 items-center justify-center gap-8">
       {navItems.map((item,index)=>(
-        <li key={index}>
+        <li key={index} onClick={toggleButton}>
             <NavLink to={item.path}   
             className={({ isActive }) =>
                       isActive
@@ -24,10 +26,16 @@ return(
     </ul>
 )
     
-
 }
 
 const Navbar = () => {
+
+    const [isMenu, setIsMenu]= useState(false);
+
+    const toggleButton = ()=>{
+       setIsMenu(prev=>!prev)
+    }
+
     return (
      <header>
         <nav className="max-w-screen-2xl container flex justify-between items-center py-6 px-4 mx-auto">
@@ -37,9 +45,8 @@ const Navbar = () => {
             </div>
 
             {/* hamburger icon */}
-
-            <div className="block md:hidden cursor-pointer text-2xl">
-                <button onClick={handleHamburger}><FaBars /></button>
+            <div onClick={toggleButton} className="block md:hidden cursor-pointer text-2xl">
+                {isMenu ? "" : <button><FaBars /></button>}
             </div>
 
             {/* desktop menu items */}
@@ -48,6 +55,19 @@ const Navbar = () => {
                  <NavItems></NavItems>
                 </ul>
             </div>
+
+
+            {/* mobile menu item */}
+           <div className={`fixed top-0 left-0 w-full h-screen bg-black bg-opacity-80 flex flex-col items-center justify-center space-y-8 text-white transition-transform trasform ${isMenu ? 'traslate-x-0': '-translate-x-full'}`}>
+            <div onClick={toggleButton} className="cursor-pointer absolute top-4 right-5">
+              <IoMdClose></IoMdClose>
+            </div>
+             <NavItems toggleButton ={toggleButton}></NavItems>
+           </div>
+
+
+
+
 {/* cart */}
             <div className="hidden md:block cursor-pointer text-4xl relative">
                     <FaBagShopping />
