@@ -7,11 +7,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Home from './pages/home/Home.jsx';
 import Furniture from './pages/furniture/Furniture.jsx';
 import Shop from './pages/shop/Shop.jsx';
 import Contact from './pages/contact/Contact.jsx';
 import AboutUs from './pages/aboutUs/AboutUs.jsx';
+import Home from './pages/home/Home.jsx';
 
 
 const router = createBrowserRouter([
