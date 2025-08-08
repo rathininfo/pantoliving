@@ -33,8 +33,8 @@ const Navbar = () => {
     };
 
     return (
-        <header>
-            <nav className="max-w-screen-2xl container flex justify-between items-center py-6 px-4 mx-auto absolute z-50">
+        <header className="w-full absolute z-50 px-4">
+            <nav className="max-w-screen-2xl mx-auto flex justify-between items-center py-6">
                 {/* logo */}
                 <div className="text-white font-bold text-2xl">
                     <Link to="/">Panto Living</Link>
