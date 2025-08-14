@@ -5,6 +5,7 @@ import WhyChoose from './WhyChoose';
 import BestSellingProducts from './BestSellingProducts';
 import Experience from './Experience';
 import Materials from './Materials';
+import Testimonials from './Testimonials';
 
 const Home = () => {
     return (
@@ -15,6 +16,7 @@ const Home = () => {
           <BestSellingProducts></BestSellingProducts>
           <Experience></Experience>
           <Materials></Materials>
+          <Testimonials></Testimonials>
         </div>
     );
 };
