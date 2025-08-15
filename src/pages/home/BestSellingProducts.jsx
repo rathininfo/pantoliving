@@ -4,6 +4,7 @@ import { FaArrowLeft, FaArrowRight, FaPlus } from "react-icons/fa";
 const BestSellingProducts = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [productData, setProductData] = useState([]);
+  const [scrollIndex, setScrollIndex] = useState(0);
 
   // Fetch products
   useEffect(() => {
@@ -13,13 +14,20 @@ const BestSellingProducts = () => {
       .catch((err) => console.error(err));
   }, []);
 
-  // Unique categories
   const categories = [...new Set(productData.map((p) => p.category))];
-
-  // Filter products by active category
   const filteredProducts = activeCategory
     ? productData.filter((p) => p.category === activeCategory)
     : productData;
+
+  const scrollLeft = () => {
+    const container = document.getElementById("product-container");
+    container.scrollBy({ left: -300, behavior: "smooth" });
+  };
+
+  const scrollRight = () => {
+    const container = document.getElementById("product-container");
+    container.scrollBy({ left: 300, behavior: "smooth" });
+  };
 
   return (
     <section className="py-12 px-4 md:px-8 lg:px-16 bg-gray-50">
@@ -30,12 +38,12 @@ const BestSellingProducts = () => {
         </h2>
 
         {/* Category Tabs */}
-        <div className="flex justify-center gap-4 mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-6 py-2 rounded-full border ${
+              className={`px-4 py-2 rounded-full border transition-colors ${
                 activeCategory === cat
                   ? "bg-gray-200 border-transparent"
                   : "border-gray-300 hover:bg-gray-100"
@@ -46,18 +54,24 @@ const BestSellingProducts = () => {
           ))}
         </div>
 
-        {/* Product Cards */}
-        <div className="relative flex items-center">
-          {/* Left arrow */}
-          <button className="absolute -left-8 bg-white shadow-md p-3 rounded-full">
+        {/* Product Cards with scroll */}
+        <div className="relative">
+          {/* Left Arrow */}
+          <button
+            onClick={scrollLeft}
+            className="hidden sm:flex absolute left-0 top-1/2 -translate-y-1/2 bg-white shadow-md p-3 rounded-full z-10"
+          >
             <FaArrowLeft />
           </button>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 w-full">
+          <div
+            id="product-container"
+            className="flex gap-6 overflow-x-auto scrollbar-hide px-2 sm:px-0 scroll-smooth"
+          >
             {filteredProducts.map((product, idx) => (
               <div
                 key={idx}
-                className="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col items-center p-4"
+                className="flex-shrink-0 w-64 sm:w-56 md:w-64 lg:w-72 bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col items-center p-4"
               >
                 <img
                   src={product.image}
@@ -81,8 +95,11 @@ const BestSellingProducts = () => {
             ))}
           </div>
 
-          {/* Right arrow */}
-          <button className="absolute -right-8 bg-white shadow-md p-3 rounded-full">
+          {/* Right Arrow */}
+          <button
+            onClick={scrollRight}
+            className="hidden sm:flex absolute right-0 top-1/2 -translate-y-1/2 bg-white shadow-md p-3 rounded-full z-10"
+          >
             <FaArrowRight />
           </button>
         </div>

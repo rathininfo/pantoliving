@@ -3,83 +3,20 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Star } from "lucide-react";
+import { useState } from "react";
 
-const testimonials = [
-  {
-    image: "https://i.ibb.co.com/2d3gWPH/download.jpg",
-    profile: "https://i.ibb.co.com/2d3gWPH/download.jpg",
-    name: "Bang Upin",
-    role: "Pedagang Asongan",
-    text: "Terimakasih banyak, kini ruanganku menjadi lebih mewah dan terlihat mahal",
-    rating: 4,
-  },
-  {
-    image: "https://i.ibb.co.com/VMXJbtH/download-7.jpg",
-    profile: "https://i.ibb.co.com/VMXJbtH/download-7.jpg",
-    name: "Ibuk Sukijan",
-    role: "Ibu Rumah Tangga",
-    text: "Makasih Panto, aku sekarang berasa tinggal di apartement karena barang-barang yang terlihat mewah",
-    rating: 5,
-  },
-  {
-    image: "https://i.ibb.co.com/3sLDtTY/images-1.jpg",
-    profile: "https://i.ibb.co.com/3sLDtTY/images-1.jpg",
-    name: "Mpok Ina",
-    role: "Karyawan Swasta",
-    text: "Sangat terjangkau untuk kantong saya yang tidak terlalu banyak",
-    rating: 4,
-  },
-    {
-    image: "https://i.ibb.co.com/LxMsjcs/download-9.jpg",
-    profile: "https://i.ibb.co.com/LxMsjcs/download-9.jpg",
-    name: "Mpok Ina",
-    role: "Karyawan Swasta",
-    text: "Sangat terjangkau untuk kantong saya yang tidak terlalu banyak",
-    rating: 4,
-  },
-    {
-    image: "https://i.ibb.co.com/6BgdkzR/images-3.jpg",
-    profile: "https://i.ibb.co.com/6BgdkzR/images-3.jpg",
-    name: "Mpok Ina",
-    role: "Karyawan Swasta",
-    text: "Sangat terjangkau untuk kantong saya yang tidak terlalu banyak",
-    rating: 4,
-  },
-    {
-    image: "https://i.ibb.co.com/yhtvNFZ/download-11.jpg",
-    profile: "https://i.ibb.co.com/yhtvNFZ/download-11.jpg",
-    name: "Mpok Ina",
-    role: "Karyawan Swasta",
-    text: "Sangat terjangkau untuk kantong saya yang tidak terlalu banyak",
-    rating: 4,
-  },
-    {
-    image: "https://i.ibb.co.com/jh89tN4/image-sub-copyright-30-570x696.jpg",
-    profile: "https://i.ibb.co.com/jh89tN4/image-sub-copyright-30-570x696.jpg",
-    name: "Mpok Ina",
-    role: "Karyawan Swasta",
-    text: "Sangat terjangkau untuk kantong saya yang tidak terlalu banyak",
-    rating: 4,
-  },
-    {
-    image: "https://i.ibb.co.com/kgZd67s/image-sub-copyright-31-570x696.jpg",
-    profile: "https://i.ibb.co.com/kgZd67s/image-sub-copyright-31-570x696.jpg",
-    name: "Mpok Ina",
-    role: "Karyawan Swasta",
-    text: "Sangat terjangkau untuk kantong saya yang tidak terlalu banyak",
-    rating: 4,
-  },
-    {
-    image: "https://i.ibb.co.com/0cTzD3q/download-6.jpg",
-    profile: "https://i.ibb.co.com/0cTzD3q/download-6.jpg",
-    name: "Mpok Ina",
-    role: "Karyawan Swasta",
-    text: "Sangat terjangkau untuk kantong saya yang tidak terlalu banyak",
-    rating: 4,
-  },
-];
+
 
 export default function Testimonials() {
+
+  const [tmData, setTmData] = useState([])
+
+  fetch("/public/testimonials.json")
+  .then(res=> res.json())
+  .then(data =>setTmData(data))
+  .catch(error=>console.log(error))
+
+
   return (
     <section className="py-16 bg-white">
       <div className="text-center mb-12">
@@ -104,7 +41,7 @@ export default function Testimonials() {
           }}
           className="pb-10"
         >
-          {testimonials.map((t, i) => (
+          {tmData.map((t, i) => (
             <SwiperSlide key={i}>
               <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
                 {/* Background Image */}

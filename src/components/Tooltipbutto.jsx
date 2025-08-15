@@ -4,7 +4,7 @@ const TooltipIcon = ({ size = "w-6 h-6", dotSize = "w-2 h-2", position }) => (
   <div className={`absolute ${position} flex flex-col items-center justify-center`}>
     <div className="group relative flex flex-col items-center">
       {/* Tooltip */}
-      <div className="absolute bottom-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none group-hover:pointer-events-auto flex items-center gap-2 px-3 py-2 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
+      <div className="absolute bottom-12 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center gap-2 px-3 py-2 bg-white/10 backdrop-blur-md rounded-full shadow-lg">
         <div className="w-5 h-5 rounded-full border-2 border-white bg-orange-500 flex items-center justify-center">
           <div className="w-2 h-2 rounded-full bg-white"></div>
         </div>
@@ -23,14 +23,14 @@ const TooltipIcon = ({ size = "w-6 h-6", dotSize = "w-2 h-2", position }) => (
 
 const Tooltipbutto = () => {
   const buttons = [
-    { position: "left-36 top-[190px]", size: "w-6 h-6", dotSize: "w-2 h-2" },
-    { position: "left-96 top-[150px]", size: "w-12 h-12", dotSize: "w-4 h-4" },
-    { position: "left-[1070px] top-[250px]", size: "w-8 h-8", dotSize: "w-2 h-2" },
-     { position: "left-[1770px] top-[270px]", size: "w-8 h-8", dotSize: "w-2 h-2" },
+    { position: "left-1/4 top-1/3", size: "w-6 h-6", dotSize: "w-2 h-2" },
+    { position: "left-1/2 top-1/4", size: "w-12 h-12", dotSize: "w-4 h-4" },
+    { position: "left-2/3 top-1/2", size: "w-8 h-8", dotSize: "w-2 h-2" },
+    { position: "left-3/4 top-2/3", size: "w-8 h-8", dotSize: "w-2 h-2" },
   ];
 
   return (
-    <div>
+    <div className="relative w-full h-[500px] overflow-hidden">
       {buttons.map((btn, idx) => (
         <TooltipIcon key={idx} {...btn} />
       ))}

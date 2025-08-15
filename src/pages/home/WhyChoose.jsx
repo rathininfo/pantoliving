@@ -1,10 +1,9 @@
 import React from 'react';
 
 const WhyChoose = () => {
-
-    const items = [
+  const items = [
     {
-      title: "Luxury facilities",
+      title: "Luxury Facilities",
       description:
         "The advantage of hiring a workspace with us is that gives you comfortable service and all-around facilities.",
       link: "#",
@@ -23,27 +22,30 @@ const WhyChoose = () => {
     },
   ];
 
-    return (
-        <section className="py-12 px-4 md:px-8 lg:px-16">
+  return (
+    <section className="py-10 px-4 sm:px-6 md:px-8 lg:px-16">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="mb-10">
-          <h2 className="text-3xl md:text-4xl font-bold leading-snug">
-            Why <br /> Choosing Us
+        <div className="mb-8 text-center md:text-left">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug">
+            Why <br className="hidden sm:block" /> Choosing Us
           </h2>
         </div>
 
         {/* Items Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
           {items.map((item, index) => (
-            <div key={index} className="space-y-3">
-              <h3 className="text-lg font-bold">{item.title}</h3>
-              <p className="text-gray-600 text-sm md:text-base leading-relaxed">
+            <div
+              key={index}
+              className="p-5 rounded-lg hover:bg-orange-50 transition-colors duration-300"
+            >
+              <h3 className="text-lg sm:text-xl font-bold mb-2">{item.title}</h3>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
                 {item.description}
               </p>
               <a
                 href={item.link}
-                className="flex items-center gap-2 text-orange-500 font-medium hover:underline"
+                className="flex items-center gap-1 sm:gap-2 text-orange-500 font-medium hover:underline"
               >
                 More Info <span className="text-lg">→</span>
               </a>
@@ -52,7 +54,7 @@ const WhyChoose = () => {
         </div>
       </div>
     </section>
-    );
+  );
 };
 
 export default WhyChoose;
